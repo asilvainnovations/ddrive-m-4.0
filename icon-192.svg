@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="192" height="192" viewBox="0 0 192 192" role="img" aria-label="DDRiVE-M Logo">
+  <defs>
+    <!-- Circular clip mask -->
+    <clipPath id="clip192">
+      <circle cx="96" cy="96" r="96"/>
+    </clipPath>
+    <!-- Subtle cyan glow -->
+    <filter id="glow192" x="-25%" y="-25%" width="150%" height="150%">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="3.8" result="b"/>
+      <feColorMatrix in="b" type="matrix"
+        values="0 0 0 0 0  0 0.83 0 0 0  0 0 1 0 0  0 0 0 0.55 0" result="cb"/>
+      <feMerge><feMergeNode in="cb"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <!-- Radial glow background -->
+    <radialGradient id="bgGrad192" cx="50%" cy="50%" r="50%">
+      <stop offset="0%"   stop-color="#001830"/>
+      <stop offset="100%" stop-color="#060a0f"/>
+    </radialGradient>
+  </defs>
+
+  <!-- Background -->
+  <circle cx="96" cy="96" r="96" fill="url(#bgGrad192)"/>
+
+  <!-- Official logo image — circular-masked + glow -->
+  <image
+    href="https://ddrive-erm.appimize.app/assets/apps/user_1097/app_12127/draft/icon/app_logo.png?1772401763"
+    x="0" y="0"
+    width="192" height="192"
+    clip-path="url(#clip192)"
+    preserveAspectRatio="xMidYMid slice"
+    filter="url(#glow192)"
+  />
+
+  <!-- Cyan border ring overlay -->
+  <circle
+    cx="96" cy="96" r="91.2"
+    fill="none"
+    stroke="rgba(0,212,255,0.6)"
+    stroke-width="4.8"
+  />
+</svg>

@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en-PH" dir="ltr">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+
+  <!-- ── SEO & PWA Meta ── -->
+  <title>DDRiVE-M | AI-Powered Disaster Resilience Platform</title>
+  <meta name="description" content="DDRiVE-M is an AI-powered Disaster Resilience platform for Philippine LGUs, compliant with RA 10121, ISO 31000, UNDRR MCR2030, and DILG MC 2020-161."/>
+  <meta name="keywords" content="DDRiVE-M, DRRM, disaster resilience, Philippines, LGU, RA 10121, ISO 31000, UNDRR, AI, hazard monitoring"/>
+  <meta name="author" content="Asilvainnovations"/>
+  <meta name="application-name" content="DDRiVE-M"/>
+
+  <!-- ── Open Graph ── -->
+  <meta property="og:title" content="DDRiVE-M | AI-Powered Disaster Resilience Platform"/>
+  <meta property="og:description" content="Comprehensive intelligence platform for Philippine LGUs compliant with RA 10121, ISO 31000, and UNDRR frameworks."/>
+  <meta property="og:type" content="website"/>
+  <meta property="og:url" content="https://asilvainnovations.github.io/ddrive-m/"/>
+  <meta property="og:image" content="https://ddrive-erm.appimize.app/assets/apps/user_1097/app_12127/draft/icon/app_logo.png?1772401763"/>
+  <meta property="og:locale" content="en_PH"/>
+
+  <!-- ── Twitter Card ── -->
+  <meta name="twitter:card" content="summary_large_image"/>
+  <meta name="twitter:title" content="DDRiVE-M | AI Disaster Resilience Platform"/>
+  <meta name="twitter:description" content="7-phase AI disaster resilience management for Philippine LGUs."/>
+  <meta name="twitter:image" content="https://ddrive-erm.appimize.app/assets/apps/user_1097/app_12127/draft/icon/app_logo.png?1772401763"/>
+
+  <!-- ── PWA & Mobile ── -->
+  <meta name="theme-color" content="#00d4ff"/>
+  <meta name="msapplication-TileColor" content="#060a0f"/>
+  <meta name="msapplication-TileImage" content="https://ddrive-erm.appimize.app/assets/apps/user_1097/app_12127/draft/icon/app_logo.png?1772401763"/>
+  <meta name="mobile-web-app-capable" content="yes"/>
+  <meta name="apple-mobile-web-app-capable" content="yes"/>
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
+  <meta name="apple-mobile-web-app-title" content="DDRiVE-M"/>
+  <meta name="format-detection" content="telephone=no"/>
+
+  <!-- ── Manifest ── -->
+  <link rel="manifest" href="manifest.json"/>
+
+  <!-- ── Favicon: circular-masked official logo (SVG with <clipPath>) ── -->
+  <link rel="icon" type="image/svg+xml" href="icons/favicon.svg"/>
+  <!-- PNG fallback for browsers that don't support SVG favicons -->
+  <link rel="icon" type="image/png" sizes="192x192"
+    href="https://ddrive-erm.appimize.app/assets/apps/user_1097/app_12127/draft/icon/app_logo.png?1772401763"/>
+
+  <!-- ── Apple Touch Icon: circular logo ── -->
+  <link rel="apple-touch-icon" sizes="192x192" href="icons/icon-192.svg"/>
+
+  <!-- ── Preload critical logo image ── -->
+  <link rel="preload" as="image"
+    href="https://ddrive-erm.appimize.app/assets/apps/user_1097/app_12127/draft/icon/app_logo.png?1772401763"
+    type="image/png"
+    fetchpriority="high"/>
+
+  <!-- ── Fonts ── -->
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link rel="preload" as="style"
+    href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Orbitron:wght@400;700;900&display=swap"/>
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Orbitron:wght@400;700;900&display=swap"/>
+
+  <!-- ══════════════════════════════════════════════════════════════════════
+       CRITICAL INLINE CSS — above-the-fold loader + circular logo system
+       ══════════════════════════════════════════════════════════════════════ -->
+  <style>
+    /* Prevent FOUC */
+    html { background: #060a0f; }
+    body { visibility: hidden; }
+    body.ready { visibility: visible; }
+
+    /* ─── Loading Screen ─────────────────────────────────────────────────── */
+    #app-loader {
+      position: fixed; inset: 0;
+      background: #060a0f;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      gap: 22px; z-index: 9998;
+      transition: opacity 0.6s ease;
+    }
+    #app-loader.fade-out { opacity: 0; pointer-events: none; }
+
+    /* ─── Loader: Circular Logo Container ────────────────────────────────── */
+    .loader-logo-wrap {
+      position: relative;
+      width: 80px; height: 80px;
+    }
+
+    /* Outer animated glow ring */
+    .loader-logo-ring {
+      position: absolute; inset: -6px;
+      border-radius: 50%;
+      border: 2px solid transparent;
+      background:
+        linear-gradient(#060a0f, #060a0f) padding-box,
+        conic-gradient(from 0deg, #00d4ff, #0044cc, #00d4ff80, #00d4ff) border-box;
+      animation: loader-ring-spin 2s linear infinite;
+    }
+    @keyframes loader-ring-spin {
+      from { transform: rotate(0deg); }
+      to   { transform: rotate(360deg); }
+    }
+
+    /* Inner glow pulse */
+    .loader-logo-glow {
+      position: absolute; inset: -12px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(0,212,255,0.18) 0%, transparent 70%);
+      animation: loader-glow-breathe 2.4s ease-in-out infinite;
+    }
+    @keyframes loader-glow-breathe {
+      0%,100% { opacity: 0.5; transform: scale(0.9); }
+      50%      { opacity: 1;   transform: scale(1.1); }
+    }
+
+    /* The actual circular-masked logo image */
+    .loader-logo-img {
+      width: 80px; height: 80px;
+      border-radius: 50%;
+      overflow: hidden;
+      clip-path: circle(50% at 50% 50%);
+      -webkit-clip-path: circle(50% at 50% 50%);
+      display: block;
+      object-fit: cover;
+      object-position: center;
+      border: 2px solid rgba(0,212,255,0.55);
+      box-shadow:
+        0 0 0 3px rgba(0,212,255,0.1),
+        0 0 20px rgba(0,212,255,0.3);
+      position: relative;
+      z-index: 2;
+      background: linear-gradient(135deg,#00d4ff,#0044cc); /* shown while loading */
+    }
+
+    /* Fallback shown if image fails */
+    .loader-logo-fallback {
+      width: 80px; height: 80px;
+      border-radius: 50%;
+      background: linear-gradient(135deg,#00d4ff,#0044cc);
+      display: none;
+      align-items: center; justify-content: center;
+      font-family: Georgia,serif;
+      font-size: 38px; font-weight: 900; color: #060a0f;
+      border: 2px solid rgba(0,212,255,0.55);
+      box-shadow: 0 0 20px rgba(0,212,255,0.3);
+      position: relative; z-index: 2;
+    }
+    .loader-logo-img.errored { display: none; }
+    .loader-logo-img.errored + .loader-logo-fallback { display: flex; }
+
+    .loader-name {
+      font-family: 'Orbitron', Georgia, serif;
+      font-size: 20px; font-weight: 700;
+      color: #00d4ff; letter-spacing: 5px;
+      text-shadow: 0 0 20px rgba(0,212,255,0.4);
+    }
+    .loader-sub {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 10px; color: #4a7a9b; letter-spacing: 2.5px;
+      text-align: center;
+    }
+    .loader-bar-wrap {
+      width: 220px; height: 2px;
+      background: #1a3352; border-radius: 2px; overflow: hidden;
+      position: relative;
+    }
+    /* Two-layer progress: fill + shimmer */
+    .loader-bar {
+      height: 100%; width: 0;
+      background: linear-gradient(90deg, #00d4ff, #0066cc);
+      border-radius: 2px;
+      animation: loader-bar 1.4s cubic-bezier(0.4,0,0.2,1) forwards;
+      position: relative;
+    }
+    .loader-bar::after {
+      content: '';
+      position: absolute; inset: 0;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+      background-size: 200% 100%;
+      animation: loader-shimmer 1.4s ease forwards;
+    }
+    @keyframes loader-bar {
+      0%   { width: 0; }
+      60%  { width: 75%; }
+      100% { width: 100%; }
+    }
+    @keyframes loader-shimmer {
+      from { background-position: -200% 0; }
+      to   { background-position: 200% 0; }
+    }
+
+    .loader-dots span {
+      display: inline-block;
+      width: 5px; height: 5px;
+      border-radius: 50%;
+      background: #00d4ff;
+      margin: 0 3px;
+      animation: loader-dot-bounce 1.2s ease-in-out infinite;
+    }
+    .loader-dots span:nth-child(2) { animation-delay: 0.15s; }
+    .loader-dots span:nth-child(3) { animation-delay: 0.30s; }
+    @keyframes loader-dot-bounce {
+      0%,80%,100% { transform: scale(0.6); opacity: 0.4; }
+      40%          { transform: scale(1.1); opacity: 1;   }
+    }
+  </style>
+
+  <!-- ── Application Stylesheet ── -->
+  <link rel="stylesheet" href="css/styles.css"/>
+</head>
+<body>
+
+<!-- ══════════════════════════════════════════════════════════════════════
+     HIDDEN SVG DEFS — reusable <clipPath> for circular masking throughout
+     ══════════════════════════════════════════════════════════════════════ -->
+<svg class="logo-svg-defs" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <!-- Standard circle clip — used by any SVG <image> element -->
+    <clipPath id="logo-clip-sm"  clipPathUnits="objectBoundingBox"><circle cx="0.5" cy="0.5" r="0.5"/></clipPath>
+    <clipPath id="logo-clip-md"  clipPathUnits="objectBoundingBox"><circle cx="0.5" cy="0.5" r="0.5"/></clipPath>
+    <clipPath id="logo-clip-lg"  clipPathUnits="objectBoundingBox"><circle cx="0.5" cy="0.5" r="0.5"/></clipPath>
+    <!-- Soft glow filter for logo -->
+    <filter id="logo-glow" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="2.5" result="blur"/>
+      <feColorMatrix in="blur" type="matrix"
+        values="0 0 0 0 0
+                0 0.83 0 0 0
+                0 0 1 0 0
+                0 0 0 0.7 0" result="coloredBlur"/>
+      <feMerge><feMergeNode in="coloredBlur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+</svg>
+
+<!-- ══════════════════════════════════════════════════════════════════════
+     LOADING SCREEN — circular-masked official logo
+     ══════════════════════════════════════════════════════════════════════ -->
+<div id="app-loader" role="status" aria-label="Loading DDRiVE-M platform" aria-busy="true" aria-live="polite">
+
+  <!-- Circular logo with animated glow ring -->
+  <div class="loader-logo-wrap">
+    <div class="loader-logo-glow"></div>
+    <div class="loader-logo-ring"></div>
+    <img
+      id="loader-logo-img"
+      src="https://ddrive-erm.appimize.app/assets/apps/user_1097/app_12127/draft/icon/app_logo.png?1772401763"
+      alt="DDRiVE-M official logo"
+      class="loader-logo-img"
+      width="80" height="80"
+      loading="eager"
+      decoding="sync"
+      fetchpriority="high"
+      onerror="this.classList.add('errored')"
+    />
+    <!-- Fallback shown if remote image fails -->
+    <div class="loader-logo-fallback" aria-hidden="true">D</div>
+  </div>
+
+  <div class="loader-name" aria-label="DDRiVE-M">DDRiVE&#x2011;M</div>
+  <div class="loader-sub">AI DISASTER RESILIENCE PLATFORM</div>
+
+  <div class="loader-bar-wrap" role="progressbar" aria-label="Loading progress" aria-valuemin="0" aria-valuemax="100">
+    <div class="loader-bar"></div>
+  </div>
+
+  <div class="loader-sub" style="margin-top:-10px;opacity:0.7">
+    INITIALIZING SYSTEMS
+    <span class="loader-dots" aria-hidden="true">
+      <span></span><span></span><span></span>
+    </span>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════════════════
+     MAIN APPLICATION ROOT
+     ══════════════════════════════════════════════════════════════════════ -->
+<div id="app" role="application" aria-label="DDRiVE-M Disaster Resilience Platform">
+  <!-- Shell and modules rendered by app.js -->
+</div>
+
+<!-- ══════════════════════════════════════════════════════════════════════
+     SCRIPTS — data must load before app
+     ══════════════════════════════════════════════════════════════════════ -->
+<script src="js/data.js" defer></script>
+<script src="js/app.js" defer></script>
+
+<!-- ══════════════════════════════════════════════════════════════════════
+     BOOT SCRIPT
+     ══════════════════════════════════════════════════════════════════════ -->
+<script>
+(function() {
+  /* ── Show body immediately ── */
+  document.addEventListener('DOMContentLoaded', function() {
+    document.body.classList.add('ready');
+
+    /* ── Dismiss loader with smooth fade after scripts init ── */
+    var dismissed = false;
+    function dismissLoader() {
+      if (dismissed) return;
+      dismissed = true;
+      var loader = document.getElementById('app-loader');
+      if (!loader) return;
+      loader.classList.add('fade-out');
+      setTimeout(function() {
+        if (loader.parentNode) loader.parentNode.removeChild(loader);
+      }, 650);
+    }
+
+    /* Wait for the app to fully initialise (deferred scripts + render) */
+    setTimeout(dismissLoader, 1500);
+  });
+
+  /* ── PWA Install prompt ── */
+  var deferredInstall;
+  window.addEventListener('beforeinstallprompt', function(e) {
+    e.preventDefault();
+    deferredInstall = e;
+    /* Optionally expose for a custom install button:
+       document.getElementById('install-btn')?.style.display = 'block'; */
+  });
+
+  window.addEventListener('appinstalled', function() {
+    deferredInstall = null;
+    console.log('[DDRiVE-M] Installed as PWA.');
+  });
+})();
+</script>
+
+<!-- ══════════════════════════════════════════════════════════════════════
+     NOSCRIPT FALLBACK
+     ══════════════════════════════════════════════════════════════════════ -->
+<noscript>
+  <style>
+    #app-loader { display: none !important; }
+    body {
+      visibility: visible !important;
+      background: #060a0f; color: #c8d8e8;
+      font-family: monospace;
+      display: flex; align-items: center; justify-content: center;
+      min-height: 100vh; text-align: center;
+    }
+  </style>
+  <div style="padding:40px;max-width:500px;margin:auto">
+    <img
+      src="https://ddrive-erm.appimize.app/assets/apps/user_1097/app_12127/draft/icon/app_logo.png?1772401763"
+      alt="DDRiVE-M"
+      style="width:80px;height:80px;border-radius:50%;object-fit:cover;border:2px solid rgba(0,212,255,0.55);margin-bottom:20px"
+    />
+    <div style="font-size:28px;font-weight:900;color:#00d4ff;letter-spacing:4px;margin-bottom:16px">DDRiVE-M</div>
+    <p style="color:#f59e0b;font-size:13px;margin-bottom:12px">⚠ JavaScript is required to run DDRiVE-M.</p>
+    <p style="color:#4a7a9b;font-size:11px;line-height:1.6">Please enable JavaScript in your browser to access the AI-powered Disaster Resilience Platform for Philippine LGUs.</p>
+  </div>
+</noscript>
+
+</body>
+</html>
